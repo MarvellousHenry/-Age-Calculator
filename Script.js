@@ -6,27 +6,48 @@ function calculateAge() {
   const month = parseInt(document.getElementById('month').value);
   const year = parseInt(document.getElementById('year').value);
 
+
   // Validate inputs
+  const resultElement = document.getElementById('result');
+  const messages = [];
+
   if (!day) {
-    document.getElementById('result').textContent = "Fill in this field.";
-    return;
+    messages.push("Day is required.");
+    document.getElementById('day').textContent = "This field is required.";
+  } else {
+    document.getElementById('day').textContent = ""; // Clear any previous messages
   }
+
   if (!month) {
-    document.getElementById('result').textContent = "Fill in this field.";
-    return;
+    messages.push("Month is required.");
+    document.getElementById('month').textContent = "This field is required.";
+  } else {
+    document.getElementById('month').textContent = ""; // Clear any previous messages
   }
 
   if (!year) {
-    document.getElementById('result').textContent = "Fill in this field.";
+    messages.push("Year is required.");
+    document.getElementById('year').textContent = "This field is required.";
+  } else {
+    document.getElementById('year').textContent = ""; // Clear any previous messages
+  }
+
+  if (messages.length > 0) {
+    resultElement.textContent = messages.join(" ");
     return;
   }
 
+  // If all fields are filled, clear the result message
+  resultElement.textContent = "";
+
+
+
   if (month < 1 || month > 12) {
-    document.getElementById('result').textContent = "Invalid Month. Enter a number between 1 and 12.";
+    document.getElementById('result').textContent = "Invalid. Enter a number between 1 and 12.";
     return;
   }
   if (month === 2 && day > 29) {
-    document.getElementById('result').textContent = "Invalid Day. Input a value between 1 and 29.";
+    document.getElementById('result').textContent = "Invalid. Input a value between 1 and 29.";
     return;
   }
 
@@ -34,7 +55,13 @@ function calculateAge() {
     document.getElementById('result').textContent = "Declined. Input a value between 1 and 31.";
     return;
   }
- 
+
+
+  // Ensure the year is valid
+  if (!/^\d{4}$/.test(year)) {
+    document.getElementById('result').textContent = "Valid Year Required.";
+    return;
+  }
 
   // Get today's date
   const today = new Date();
@@ -50,4 +77,8 @@ function calculateAge() {
 
   // Display result
   document.getElementById('result').textContent = `YOU ARE ${age} YEARS OLD!`;
+
+
+
+
 }
