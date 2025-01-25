@@ -11,57 +11,58 @@ function calculateAge() {
   const resultElement = document.getElementById('result');
   const messages = [];
 
+  //Day,Month,Year validation
   if (!day) {
     messages.push("Day is required.");
     document.getElementById('day').textContent = "This field is required.";
   } else {
-    document.getElementById('day').textContent = ""; // Clear any previous messages
+    document.getElementById('day').textContent = "";
   }
 
-  if (!month) {
+  if (!month) { 
     messages.push("Month is required.");
     document.getElementById('month').textContent = "This field is required.";
   } else {
-    document.getElementById('month').textContent = ""; // Clear any previous messages
+    document.getElementById('month').textContent = "";
   }
 
   if (!year) {
     messages.push("Year is required.");
     document.getElementById('year').textContent = "This field is required.";
   } else {
-    document.getElementById('year').textContent = ""; // Clear any previous messages
+    document.getElementById('year').textContent = "";
   }
 
   if (messages.length > 0) {
     resultElement.textContent = messages.join(" ");
     return;
   }
-
-  // If all fields are filled, clear the result message
   resultElement.textContent = "";
 
 
-
+  //Validating Months
   if (month < 1 || month > 12) {
     document.getElementById('result').textContent = "Invalid. Enter a number between 1 and 12.";
     return;
   }
+
+  //Validating February
   if (month === 2 && day > 29) {
     document.getElementById('result').textContent = "Invalid. Input a value between 1 and 29.";
     return;
   }
-
   if (day < 1 || day > 31) {
     document.getElementById('result').textContent = "Declined. Input a value between 1 and 31.";
     return;
   }
 
 
-  // Ensure the year is valid
+  // validating Year
   if (!/^\d{4}$/.test(year)) {
     document.getElementById('result').textContent = "Valid Year Required.";
     return;
   }
+  
 
   // Get today's date
   const today = new Date();
