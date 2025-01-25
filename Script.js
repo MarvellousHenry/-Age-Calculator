@@ -19,7 +19,7 @@ function calculateAge() {
     document.getElementById('day').textContent = "";
   }
 
-  if (!month) { 
+  if (!month) {
     messages.push("Month is required.");
     document.getElementById('month').textContent = "This field is required.";
   } else {
@@ -51,6 +51,11 @@ function calculateAge() {
     document.getElementById('result').textContent = "Invalid. Input a value between 1 and 29.";
     return;
   }
+  // Validating days for months with 30 days
+  if ([4, 6, 9, 11].includes(month) && day > 30) {
+    document.getElementById('result').textContent = "Invalid. This month has only 30 days.";
+    return;
+  }
   if (day < 1 || day > 31) {
     document.getElementById('result').textContent = "Declined. Input a value between 1 and 31.";
     return;
@@ -62,7 +67,7 @@ function calculateAge() {
     document.getElementById('result').textContent = "Valid Year Required.";
     return;
   }
-  
+
 
   // Get today's date
   const today = new Date();
