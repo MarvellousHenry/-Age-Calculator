@@ -1,0 +1,1 @@
+As part of my internship task with codeAlpha, I developed the Age Calculator which is a simple web-based application that allows users to input their birth date and calculates their exact age in years. This project is built using HTML, CSS, and JavaScript and provides a user-friendly interface for accurate age calculation.
